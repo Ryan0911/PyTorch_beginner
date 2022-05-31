@@ -31,3 +31,6 @@
 
 > - torch.autograd 追蹤所有將其 requires_grad 設置為 true 的 tensor 的操作。對於不需要梯度的 tensor，將此屬性設置為 false 就會從梯度計算的 DAG 中排除！
 > - 即使只有一個輸入 tensor 具有 requires_grad = True，操作的輸出 tensor 也將需要梯度。
+> - 在 NN 中，不計算梯度的參數通常稱為**凍結參數**。若事先就知道不需要那些參數的梯度，就可以直接凍結。凍結可以通過減少自動梯度的計算，帶來性能優勢
+> - DAG 中排除的另一個應用： 調整預訓練網路
+> - 在微調中(Fine-Tuning)，會凍結大部分模型，通常僅修改分類器層以對新 label 進行預測(例子：4_adjustPretrainNN.py)
